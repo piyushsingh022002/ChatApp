@@ -28,6 +28,6 @@ public class ChatHub : Hub
     public async Task SendMessage(string message)
     {
         var username = Context.User?.Identity?.Name ?? "Anonymous";
-        await Clients.Group(GlobalRoom).SendAsync("ReceiveMessage", username, message);
+        await Clients.All.SendAsync("ReceiveMessage", username, message);
     }
 }
