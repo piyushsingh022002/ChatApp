@@ -13,6 +13,10 @@ public class ChatHub : Hub
     var name = Context.User?.Identity?.Name ?? "unauthenticated";
     Console.WriteLine($"[SignalR] Connected User: {name}");
 
+
+    await Groups.AddToGroupAsync(Context.ConnectionId, GlobalRoom);
+    await Clients.Group(GlobalRoom).SendAsync("UserJoined", name);
+
     await base.OnConnectedAsync();
 }
 
@@ -28,6 +32,7 @@ public class ChatHub : Hub
     public async Task SendMessage(string message)
     {
         var username = Context.User?.Identity?.Name ?? "Anonymous";
-        await Clients.All.SendAsync("ReceiveMessage", username, message);
+        await Clients.Group(GlobalRoom).SendAsync("ReceiveMessage", username, message);
+
     }
 }
