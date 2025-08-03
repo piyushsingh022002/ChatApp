@@ -1,0 +1,43 @@
+# .NET build artifacts
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Rider project files
+.idea/
+
+# Visual Studio Code settings
+.vscode/
+
+# Mac system files
+.DS_Store
+
+# Secrets or config overrides
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+.env
+
+# Log files
+*.log
+
+# Docker
+**/Dockerfile
+docker-compose*
+.dockerignore
+
+# Others
+*.swp
+*.bak
+*.tmp
+*.orig
+*.rej

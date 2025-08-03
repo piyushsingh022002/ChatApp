@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: chatapp-backend
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: JWT__Key
+        value: <your-secret-key>
+      - key: JWT__Issuer
+        value: https://chatapp-backend.onrender.com
+      - key: JWT__Audience
+        value: https://chatapp-frontend.vercel.app
+      - key: MongoSettings__ConnectionString
+        value: <your-mongo-uri>
+      - key: MongoSettings__Database
+        value: ChatApp
+    autoDeploy: true
