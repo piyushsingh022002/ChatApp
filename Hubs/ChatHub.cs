@@ -9,12 +9,13 @@ public class ChatHub : Hub
     private const string GlobalRoom = "global";
 
     public override async Task OnConnectedAsync()
-    {
-        var username = Context.User?.Identity?.Name ?? "Anonymous";
-        await Groups.AddToGroupAsync(Context.ConnectionId, GlobalRoom);
-        await Clients.Group(GlobalRoom).SendAsync("UserJoined", username);
-        await base.OnConnectedAsync();
-    }
+{
+    var name = Context.User?.Identity?.Name ?? "unauthenticated";
+    Console.WriteLine($"[SignalR] Connected User: {name}");
+
+    await base.OnConnectedAsync();
+}
+
 
     public override async Task OnDisconnectedAsync(Exception? exception)
     {
