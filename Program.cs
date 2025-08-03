@@ -21,10 +21,13 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(policy =>
     {
         policy
+            .WithOrigins(
+                "http://localhost:3000",                       // local dev
+                "https://chatapp-frontend.vercel.app",         // your prod frontend
+                "https://chatapp-jzrd.onrender.com")           // your backend
             .AllowAnyHeader()
             .AllowAnyMethod()
-            .AllowCredentials()
-            .SetIsOriginAllowed(_ => true); // Allow all for dev
+            .AllowCredentials(); // must be present when using SignalR + JWT
     });
 });
 builder.Services.AddSignalR();
